@@ -2,7 +2,12 @@ from patternbot import PatternBot
 
 # Main callback for application.
 def main():
-    bot = PatternBot()
+    # Print application header.
+    print "PatternBot OCP (20170212)"
+    print "To end the session, type `exit`, `quit` or hit Ctrl-D."
+    print
+
+    # Initialize locals.
     s_in = ""
     exits = [
         "exit",
@@ -11,8 +16,9 @@ def main():
         "bye",
     ]
 
-    # Greet the user.
-    print bot.process_enter()
+    # Initialize the bot and give it a chance to greet the user.
+    bot = PatternBot()
+    print "<", bot.process_enter()
 
     try:
         # Go into input loop.
@@ -26,9 +32,11 @@ def main():
             else:
                 s_out = bot.process_input(s_in)
 
+            # Print the response from the bot.
             print "<", s_out
+
     except EOFError:
-        print "ending session"
+        print "\nending session"
 
 if __name__ == "__main__":
     main()

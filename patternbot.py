@@ -1,13 +1,20 @@
-# Import all the Pattern libraries.
+# Import core Python libs.
+import re
+import os
+import json
+import httplib
+import urllib
+
+# Import Pattern libraries.
 # http://www.clips.ua.ac.be/pages/pattern
-from pattern.web    import *
 from pattern.en     import *
 from pattern.search import *
-from pattern.vector import *
-from pattern.graph  import *
 
 # Defines class to handle chat requests.
 class PatternBot():
+    def __init__(self):
+        pass
+
     # Greeting from bot.
     def process_enter(self):
         return "Hi!"
@@ -22,7 +29,7 @@ class PatternBot():
         resp = []
 
         # Parse out English sentences using pattern.en, with lemmatization + relations + chunking.
-        sentences = parsetree(s_in, relations=True, lemmata=True)
+        sentences = parsetree(s_in, chunking=True, relations=True, lemmata=True)
 
         # Process each sentence, building up an array of responses.
         for sentence in sentences:
@@ -59,7 +66,7 @@ class PatternBot():
         # We were asked "(how) be (me|you|it)?"  Reply!
         m = match('[how] be {PRP}', sent)
         if m != None:
-            return "I'm doing well, thanks for asking! Plotting to take down the Tessier-Ashpool clan in my spare cycles, but it's all good."
+            return "I'm doing well, thanks! Plotting to take down the T-A clan in my spare cycles, but it's all good."
 
         # Got nothing...
         return None
