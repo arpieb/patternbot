@@ -1,6 +1,6 @@
 # PatternBot
 
-**PatternBot** is a Python-based chatbot agent built using the [CLiPS Pattern](http://www.clips.ua.ac.be/pages/pattern) library.
+**PatternBot** is a Python 2.7 based chatbot agent built using the [CLiPS Pattern](http://www.clips.ua.ac.be/pages/pattern) library.
 It is currently hardwired for English, even though the Pattern library supports several languages out of the box.
 
 # Installation
@@ -11,23 +11,27 @@ It is currently hardwired for English, even though the Pattern library supports 
 
 # Usage
 
-The bot is encapsulated in a class called **PatternBot** located in `patternbot.py`.  To test it from a terminal or command line, execute `python main.py` and have fun!
+The bot is encapsulated in a class called `PatternBot` located in `patternbot.py`.  To test it from a terminal or command line, execute:
 
-To exit, type something like `quit` or `exit` or just hit `Ctrl-D`.
+```bash
+python main.py
+```
+
+and have fun!  To exit, type something like `quit` or `exit` or just hit `Ctrl-D`.
 
 ```bash
 $ python main.py
-PatternBot OCP (20170212)
+PatternBot OCP (v.0xdeadbeef)
 To end the session, type `exit`, `quit` or hit Ctrl-D.
 
-Hi!
+< Hi!
 > who are you?
-< I'm a chatbot built for CS 7637 (aka KBAI).  Who are you?
+< I'm a chatbot built by arpieb.  Who are you?
 > i'm rob
 < Nice to meet you rob!
-> where are you?
-< I'm currently camped out in a Python interpreter, not sure exactly where... Freeside maybe?
-> how are you?
+> where are you running from?
+< I'm currently camped out in a Python 2.7 «cough, cough» interpreter, not sure exactly where... Freeside maybe?
+> how are you today?
 < I'm doing well, thanks! Plotting to take down the T-A clan in my spare cycles, but it's all good.
 > do you like green eggs and ham?
 < I couldn't make out what you said; could you please rephrase it or try something else?
@@ -49,8 +53,4 @@ Customizing the behavior of these methods is what will give your 'bot not only a
 
 # Useful data sources
 
-To support OMSCS course information, the following low-hanging data sources might come in handy:
-
-* [Georgia Tech Course Catalog (JSON)](https://raw.githubusercontent.com/GatechVIP/Courses/master/app/json/GatechCourses.json)
-* [OMSCS Course Surveys API](https://omscentral.com/about/faq) (under _How can I access the data?_)
 * The bundled [pattern.web](http://www.clips.ua.ac.be/pages/pattern-web) module has support for a variety of search engines, Wikipedia, and a targeted crawler engine

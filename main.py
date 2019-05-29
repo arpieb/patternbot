@@ -1,9 +1,10 @@
 from patternbot import PatternBot
 
+
 # Main callback for application.
 def main():
     # Print application header.
-    print "PatternBot OCP (20170212)"
+    print "PatternBot OCP (v.0xdeadbeef)"
     print "To end the session, type `exit`, `quit` or hit Ctrl-D."
     print
 
@@ -37,6 +38,7 @@ def main():
 
     except EOFError:
         print "\nending session"
+
 
 if __name__ == "__main__":
     main()

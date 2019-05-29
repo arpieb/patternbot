@@ -1,30 +1,45 @@
-# Import core Python libs.
-import re
-import os
-import json
-import httplib
-import urllib
+# coding: utf8
 
 # Import Pattern libraries.
 # http://www.clips.ua.ac.be/pages/pattern
-from pattern.en     import *
-from pattern.search import *
+from pattern.text.en import parsetree
+from pattern.text.search import match
 
-# Defines class to handle chat requests.
+
 class PatternBot():
+    """
+    Defines class to handle chat requests.
+    """
     def __init__(self):
         pass
 
-    # Greeting from bot.
+
     def process_enter(self):
+        """
+        Greeting from bot.
+
+        :return: String greeting from bot
+        """
         return "Hi!"
 
-    # User has requested the session to end.
+
     def process_exit(self, s_in):
+        """
+        User has requested the session to end.  Do something.
+
+        :param s_in:    User utterance to exit chat
+        :return:        String bot goodbye
+        """
         return "Buh-bye!"
 
-    # Ongoing input from conversation.
+
     def process_input(self, s_in):
+        """
+        Ongoing input from conversation.
+
+        :param s_in:    User utterance
+        :return:        String response to utterance
+        """
         # Set empty response for now.
         resp = []
 
@@ -45,25 +60,31 @@ class PatternBot():
         # If not, return utter confusion...
         return "I couldn't make out what you said; could you please rephrase it or try something else?"
 
-    # Handle some anticipated common canned requests that don't require more complex frame processing.
-    # Leverage pattern.search package's match() function
+
     def _create_response_simple(self, sent):
+        """
+        Handle some anticipated common canned requests that don't require more complex frame processing.
+        Leverage pattern.search package's match() function
+
+        :param sent:    Utterance sentence to craft response for
+        :return:        String response to sentence
+        """
         # We were asked "(what|who|whom) be (me|you|it)?"  Reply!
         m = match('[what|who|whom] be {PRP}', sent)
         if m != None:
-            return "I'm a chatbot built for CS 7637 (aka KBAI).  Who are you?"
+            return "I'm a chatbot built by arpieb.  Who are you?"
 
-        # We were told "I be (something|someone)."  Reply!
+        # We were told "I \be\ (something|someone)."  Reply!
         m = match('i be {*}', sent)
         if m != None:
             return "Nice to meet you " + m.group(1).string + "!"
 
-        # We were asked "(where) be (me|you|it)?"  Reply!
+        # We were asked "(where) \be\ (me|you|it)?"  Reply!
         m = match('[where] be {PRP}', sent)
         if m != None:
-            return "I'm currently camped out in a Python interpreter, not sure exactly where... Freeside maybe?"
+            return "I'm currently camped out in a Python 2.7 «cough, cough» interpreter, not sure exactly where... Freeside maybe?"
 
-        # We were asked "(how) be (me|you|it)?"  Reply!
+        # We were asked "(how) \be\ (me|you|it)?"  Reply!
         m = match('[how] be {PRP}', sent)
         if m != None:
             return "I'm doing well, thanks! Plotting to take down the T-A clan in my spare cycles, but it's all good."
